@@ -1,101 +1,75 @@
 
 import { Button } from "@/components/ui/button";
-import { Avatar } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { 
-  Settings, LogOut, Star, Calendar, MapPin, 
-  CreditCard, Bell, Shield, HelpCircle
-} from "lucide-react";
-import { Separator } from "@/components/ui/separator";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { useAuth } from "@/context/AuthContext";
+import { useNavigate } from "react-router-dom";
+import { UserRound, LogOut } from "lucide-react";
+import { toast } from "@/components/ui/sonner";
 
 export default function Profile() {
+  const { user, logout, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
+
+  // If not authenticated, redirect to login
+  if (!isAuthenticated) {
+    navigate("/login");
+    return null;
+  }
+
+  const handleLogout = () => {
+    logout();
+    toast.success("Logged out successfully");
+    navigate("/login");
+  };
+
   return (
-    <div className="pt-4">
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-2xl font-bold">Profile</h1>
-        <Button variant="ghost" size="icon">
-          <Settings className="h-5 w-5" />
-        </Button>
-      </div>
+    <div className="container py-6">
+      <h1 className="text-2xl font-bold mb-6">Your Profile</h1>
       
-      <div className="flex items-center space-x-4 mb-6">
-        <Avatar className="h-20 w-20">
-          <img 
-            src="https://randomuser.me/api/portraits/women/44.jpg" 
-            alt="Profile" 
-            className="h-full w-full object-cover"
-          />
-        </Avatar>
-        
-        <div>
-          <h2 className="text-xl font-semibold">Sarah Williams</h2>
-          <div className="flex items-center space-x-1 text-sm text-gray-600">
-            <Star className="h-4 w-4 text-yellow-500 fill-yellow-500" />
-            <span>4.8</span>
+      <Card className="mb-8">
+        <CardHeader className="flex flex-row items-center gap-4">
+          <div className="bg-primary/10 p-3 rounded-full">
+            <UserRound className="h-8 w-8 text-primary" />
           </div>
-          <Badge className="mt-1 bg-blue-100 text-blue-800 hover:bg-blue-100">Verified User</Badge>
-        </div>
-      </div>
-      
-      <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-6">
-        <div className="p-4">
-          <h3 className="font-medium text-gray-900 mb-4">Account Information</h3>
-          
+          <div>
+            <CardTitle>{user?.name}</CardTitle>
+            <CardDescription>{user?.email}</CardDescription>
+          </div>
+        </CardHeader>
+        <CardContent>
           <div className="space-y-4">
-            <div className="flex items-center">
-              <div className="w-8">
-                <MapPin className="h-5 w-5 text-gray-500" />
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Location</p>
-                <p className="font-medium">San Francisco, CA</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center">
-              <div className="w-8">
-                <Calendar className="h-5 w-5 text-gray-500" />
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Member Since</p>
-                <p className="font-medium">April 2024</p>
-              </div>
-            </div>
-            
-            <div className="flex items-center">
-              <div className="w-8">
-                <CreditCard className="h-5 w-5 text-gray-500" />
-              </div>
-              <div>
-                <p className="text-sm text-gray-600">Payment Methods</p>
-                <p className="font-medium">Visa •••• 4242</p>
-              </div>
+            <div>
+              <p className="text-sm font-medium text-muted-foreground">User Type</p>
+              <p className="capitalize">{user?.userType}</p>
             </div>
           </div>
+        </CardContent>
+        <CardFooter>
+          <Button variant="outline" className="w-full" onClick={handleLogout}>
+            <LogOut className="mr-2 h-4 w-4" />
+            Logout
+          </Button>
+        </CardFooter>
+      </Card>
+      
+      <div className="space-y-6">
+        <div>
+          <h2 className="text-xl font-semibold mb-4">Account Settings</h2>
+          <Card>
+            <CardContent className="p-6">
+              <Button variant="outline" className="w-full justify-start" onClick={() => toast.info("Feature coming soon")}>
+                Edit profile
+              </Button>
+              <Button variant="outline" className="w-full justify-start mt-2" onClick={() => toast.info("Feature coming soon")}>
+                Change password
+              </Button>
+              <Button variant="outline" className="w-full justify-start mt-2" onClick={() => toast.info("Feature coming soon")}>
+                Notification settings
+              </Button>
+            </CardContent>
+          </Card>
         </div>
       </div>
-      
-      <div className="space-y-1 mb-6">
-        <Button variant="ghost" className="w-full justify-start pl-2 py-6">
-          <Bell className="h-5 w-5 mr-3 text-gray-500" />
-          <span>Notifications</span>
-        </Button>
-        <Separator />
-        <Button variant="ghost" className="w-full justify-start pl-2 py-6">
-          <Shield className="h-5 w-5 mr-3 text-gray-500" />
-          <span>Privacy & Security</span>
-        </Button>
-        <Separator />
-        <Button variant="ghost" className="w-full justify-start pl-2 py-6">
-          <HelpCircle className="h-5 w-5 mr-3 text-gray-500" />
-          <span>Help & Support</span>
-        </Button>
-      </div>
-      
-      <Button variant="outline" className="w-full flex items-center justify-center text-red-500 border-red-200 hover:bg-red-50">
-        <LogOut className="h-4 w-4 mr-2" />
-        Sign Out
-      </Button>
     </div>
   );
 }
