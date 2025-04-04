@@ -4,7 +4,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { UserRound, LogOut } from "lucide-react";
-import { toast } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 export default function Profile() {
   const { user, logout, isAuthenticated } = useAuth();
