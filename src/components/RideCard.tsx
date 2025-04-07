@@ -1,39 +1,68 @@
-
 import { MapPin, Calendar, Users, Clock, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Avatar } from "@/components/ui/avatar";
+import { useEffect, useState } from "react";
 
-export interface RideProps {
-  id: string;
-  driver: {
+// Backend data interface
+interface BackendRide {
+  id: number;
+  rider_id: number;
+  driver_id: number | null;
+  origin: string;
+  destination: string;
+  status: string;
+  userType: string;
+}
+
+// Rich UI data interface
+interface UIRide {
+  driver?: {
     name: string;
     avatar: string;
     rating: number;
   };
-  origin: string;
-  destination: string;
-  date: string;
-  time: string;
-  price: number;
-  seats: {
+  date?: string;
+  time?: string;
+  price?: number;
+  seats?: {
     available: number;
     total: number;
   };
-  userType: "rider" | "driver";
 }
+
+// Combined props interface
+type RideCardProps = BackendRide & Partial<UIRide>;
 
 export function RideCard({ 
   id, 
-  driver, 
+  rider_id,
+  driver_id,
   origin, 
   destination, 
-  date, 
-  time, 
-  price, 
-  seats,
-  userType
-}: RideProps) {
+  status,
+  userType,
+  // Optional UI enrichment props
+  driver = {
+    name: "Driver Pending",
+    avatar: "https://ui-avatars.com/api/?name=Driver+Pending",
+    rating: 0,
+  },
+  date = "Pending",
+  time = "Pending",
+  price = 0,
+  seats = {
+    available: 4,
+    total: 4,
+  }
+}: RideCardProps) {
+  const [distance, setDistance] = useState<string>("10 km");
+
+  // Set fixed distance instead of API call
+  useEffect(() => {
+    setDistance("10 km");
+  }, []);
+
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-4">
       <div className="p-4">
@@ -44,10 +73,13 @@ export function RideCard({
             </Avatar>
             <div className="ml-3">
               <h3 className="font-medium text-gray-900">{driver.name}</h3>
-              <div className="flex items-center">
-                <span className="text-yellow-500">★</span>
-                <span className="text-xs text-gray-600 ml-1">{driver.rating.toFixed(1)}</span>
-              </div>
+              {driver.rating > 0 && (
+                <div className="flex items-center">
+                  <span className="text-yellow-500">★</span>
+                  <span className="text-xs text-gray-600 ml-1">{driver.rating.toFixed(1)}</span>
+                </div>
+              )}
+              <span className="text-xs text-gray-500">Status: {status}</span>
             </div>
           </div>
           <div className="text-right">
@@ -76,6 +108,9 @@ export function RideCard({
             </div>
             <div>
               <p className="text-sm text-gray-900 font-medium">{destination}</p>
+              {distance && (
+                <p className="text-xs text-gray-500">Distance: {distance}</p>
+              )}
             </div>
           </div>
         </div>
@@ -96,15 +131,26 @@ export function RideCard({
         </div>
 
         {userType === "rider" ? (
-          <Button className="w-full bg-blue-500 hover:bg-blue-600 text-white">
-            Book Seat
+          <Button 
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white"
+            disabled={status !== "pending"}
+          >
+            {status === "pending" ? "Book Seat" : "Ride " + status}
           </Button>
         ) : (
           <div className="flex space-x-2">
-            <Button variant="outline" className="flex-1">
+            <Button 
+              variant="outline" 
+              className="flex-1"
+              disabled={status !== "pending"}
+            >
               Edit
             </Button>
-            <Button variant="outline" className="flex-1 text-red-500 border-red-200 hover:bg-red-50">
+            <Button 
+              variant="outline" 
+              className="flex-1 text-red-500 border-red-200 hover:bg-red-50"
+              disabled={status !== "pending"}
+            >
               Cancel
             </Button>
           </div>

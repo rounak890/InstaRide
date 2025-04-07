@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
@@ -6,8 +5,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
+import config from "@/config"; // Import the config file
 
 export default function Login() {
+  console.log("Login component rendered:- " + config.backendUrl); // Debugging line
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +22,7 @@ export default function Login() {
     try {
       await login(email, password);
       toast.success("Login successful");
-      navigate("/");
+      navigate("/explore"); // Redirect to home or AppLayout
     } catch (error) {
       toast.error("Login failed. Please check your credentials.");
       console.error("Login error:", error);
@@ -75,7 +76,7 @@ export default function Login() {
               className="w-full" 
               disabled={isLoading}
             >
-              {isLoading ? "Signing in..." : "Sign in"}
+              {isLoading ? "Loging in..." : "Login"}
             </Button>
             <div className="text-center text-sm">
               Don't have an account?{" "}

@@ -1,26 +1,31 @@
-
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { useAuth } from "@/context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { UserRound, LogOut } from "lucide-react";
 import { toast } from "sonner";
+import { useEffect } from "react";
 
 export default function Profile() {
   const { user, logout, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  // If not authenticated, redirect to login
-  if (!isAuthenticated) {
-    navigate("/login");
-    return null;
-  }
+  // Redirect to login if not authenticated
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/login");
+    }
+  }, [isAuthenticated, navigate]);
 
   const handleLogout = () => {
     logout();
     toast.success("Logged out successfully");
     navigate("/login");
   };
+
+  if (!isAuthenticated) {
+    return null; // Prevent rendering until redirection happens
+  }
 
   return (
     <div className="container py-6">

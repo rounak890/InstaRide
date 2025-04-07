@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
@@ -18,18 +17,18 @@ export default function Signup() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (password !== confirmPassword) {
       toast.error("Passwords do not match");
       return;
     }
-    
+
     setIsLoading(true);
 
     try {
       await signup(name, email, password);
       toast.success("Account created successfully");
-      navigate("/");
+      navigate("/explore"); // Redirect to home or AppLayout
     } catch (error) {
       toast.error("Failed to create account");
       console.error("Signup error:", error);
