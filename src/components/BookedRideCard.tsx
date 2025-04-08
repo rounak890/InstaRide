@@ -52,7 +52,7 @@ interface UIRide {
 // Combined props interface
 type RideCardProps = BackendRide & Partial<UIRide>;
 
-export function RideCard({ 
+export function BookedRideCard({ 
   id, 
   rider_id,
   driver_id,
@@ -84,31 +84,6 @@ export function RideCard({
   useEffect(() => {
     setDistance("10 km");
   }, []);
-
-  const handleBookSeat = async () => {
-    if (seats < 1) {
-      toast.error("No seats available to book.");
-      return;
-    }
-
-    try {
-      const response = await fetch(`${config.backendUrl}/rides/${id}/book?token=${localStorage.getItem("token")}`, {
-        method: "POST",
-        // headers: {
-        //   "Content-Type": "application/json",
-        // },
-        // body: JSON.stringify({ rideId: id, riderId: rider_id }),
-      });
-
-      if (response.ok) {
-        toast.success("Seat booked successfully!");
-      } else {
-        toast.error("Failed to book seat. Please try again.");
-      }
-    } catch (error) {
-      toast.error("An error occurred. Please try again.");
-    }
-  };
 
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden mb-4">
@@ -187,13 +162,6 @@ export function RideCard({
               }}
             >
               View on Map
-            </Button>
-            <Button 
-              className="w-full bg-blue-500 hover:bg-blue-600 text-white"
-              disabled={status !== "pending"}
-              onClick={handleBookSeat}
-            >
-              {status === "pending" ? "Book Seat" : "Ride " + status}
             </Button>
           </>
         ) : (

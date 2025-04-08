@@ -1,73 +1,8 @@
-
 import { useOutletContext } from "react-router-dom";
+import Explore from "@/pages/Explore"; // Import the Explore page
 import { RideCard, RideProps } from "@/components/RideCard";
 
-// Sample data
-const sampleRides = [
-  {
-    id: "1",
-    driver: {
-      name: "Alex Johnson",
-      avatar: "https://randomuser.me/api/portraits/men/32.jpg",
-      rating: 4.8,
-    },
-    origin: "San Francisco, CA",
-    destination: "Los Angeles, CA",
-    date: "Apr 10, 2025",
-    time: "08:00 AM",
-    price: 35,
-    seats: {
-      available: 3,
-      total: 4,
-    },
-  },
-  {
-    id: "2",
-    driver: {
-      name: "Sarah Williams",
-      avatar: "https://randomuser.me/api/portraits/women/44.jpg",
-      rating: 4.6,
-    },
-    origin: "New York, NY",
-    destination: "Boston, MA",
-    date: "Apr 12, 2025",
-    time: "10:30 AM",
-    price: 28,
-    seats: {
-      available: 2,
-      total: 3,
-    },
-  },
-  {
-    id: "3",
-    driver: {
-      name: "Michael Chen",
-      avatar: "https://randomuser.me/api/portraits/men/57.jpg",
-      rating: 4.9,
-    },
-    origin: "Chicago, IL",
-    destination: "Detroit, MI",
-    date: "Apr 15, 2025",
-    time: "09:15 AM",
-    price: 30,
-    seats: {
-      available: 1,
-      total: 4,
-    },
-  },
-];
-
-const riderHomeContent = (
-  <div>
-    <h1 className="text-2xl font-bold mb-6">Available Rides</h1>
-    <div className="space-y-4">
-      {sampleRides.map((ride) => (
-        <RideCard key={ride.id} {...ride} userType="rider" />
-      ))}
-    </div>
-  </div>
-);
-
+// Sample data for driver content
 const driverHomeContent = (
   <div>
     <h1 className="text-2xl font-bold mb-6">Your Driver Dashboard</h1>
@@ -97,10 +32,14 @@ interface HomeContext {
 
 export default function Home() {
   const { userType } = useOutletContext<HomeContext>();
-  
+
   return (
     <div className="pt-4">
-      {userType === "rider" ? riderHomeContent : driverHomeContent}
+      {userType === "rider" ? (
+        <Explore /> // Render the Explore page for riders
+      ) : (
+        driverHomeContent
+      )}
     </div>
   );
 }

@@ -40,12 +40,16 @@ export default function CreateRide() {
         ...formData,
         token: token 
       });
+      console.log('Token:', token); // Debugging line
 
-      const response = await fetch(`${config.backendUrl}/rides/`, {
+//       INFO:     127.0.0.1:54215 - "POST /rides/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJyZ0BnbWFpbC5jb20iLCJleHAiOjE3NDQxMzc4OTZ9.nfgDFiLRr-MgGSYWtDcQaPYLw31NWTOXqJRUTBUbxyc HTTP/1.1" 200 OK
+// Current User: <app.models.User object at 0x000001FBD8A79E00>
+
+      const response = await fetch(`${config.backendUrl}/rides/?token=${localStorage.getItem('token')}`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'token': token || ''
+          'Accept': 'application/json',
         },
         body: JSON.stringify(formData)
       });
@@ -54,7 +58,7 @@ export default function CreateRide() {
         throw new Error('Failed to create ride');
       }
 
-      navigate('/rides'); // Redirect to rides list after success
+      navigate('/my-rides'); // Redirect to rides list after success
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Failed to create ride');
     }
