@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
-import config from "@/config"; // Import the config file
+import config from "@/Config"; // Import the config file
 
 export default function Login() {
   console.log("Login component rendered:- " + config.backendUrl); // Debugging line

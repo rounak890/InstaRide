@@ -5,7 +5,7 @@ import { RideCard } from "@/components/RideCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, Calendar, MapPin } from "lucide-react";
-import config from "@/config";
+import config from "@/Config";
 
 // Interface for ride data from backend
 interface Ride {

@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import config from '@/config.js';
+import config from '@/Config.js';
 
 
 // Define user type

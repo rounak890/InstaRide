@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useOutletContext, useNavigate } from "react-router-dom";
 import { CreateRideForm } from "@/components/CreateRideForm";
-import config from "@/config.js";
+import config from "@/Config.js";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { MapPin, Calendar } from "lucide-react";

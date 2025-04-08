@@ -2,7 +2,7 @@ import { MapPin, Calendar, Users, Clock, DollarSign } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Avatar } from "@/components/ui/avatar";
-import config from "@/config.js";
+import config from "@/Config.js";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
