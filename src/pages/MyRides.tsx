@@ -6,7 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, Calendar, MapPin } from "lucide-react";
 // import config from "@/config";
-import config from '../Config.js';
+import config from '../config.js';
 
 
 // Interface for ride data from backend
