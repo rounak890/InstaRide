@@ -146,7 +146,7 @@ export default function CreateRide() {
             required
           />
         </div>
-
+{/* 
         <div className="space-y-2">
           <label htmlFor="available_seats" className="block text-sm font-medium text-gray-700">
             Number of Available Seats
@@ -161,7 +161,7 @@ export default function CreateRide() {
             max="10"
             required
           />
-        </div>
+        </div> */}
 
         {error && <p className="text-red-500">{error}</p>}
         

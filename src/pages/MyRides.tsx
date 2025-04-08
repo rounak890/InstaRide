@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
 import { Navigate } from "react-router-dom";
-import { BookedRideCard } from "@/components/BookedRideCard";
+import { BookedRideCard } from "../components/BookedRideCard";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Search, Calendar, MapPin } from "lucide-react";
-import config from "@/config";
+// import config from "@/config";
+import config from '../config';
+
 
 // Interface for ride data from backend
 interface Ride {
