@@ -130,7 +130,7 @@ export function RideCard({
             </div>
           </div>
           <div className="text-right">
-            <span className="font-bold text-gray-900">${cost_per_seat}</span>
+            <span className="font-bold text-gray-900">₹{cost_per_seat}</span>
             <p className="text-xs text-gray-600">per seat</p>
           </div>
         </div>
