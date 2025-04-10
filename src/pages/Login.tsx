@@ -16,13 +16,19 @@ export default function Login() {
   const navigate = useNavigate();
 
   // Check if token exists in localStorage
+  const token = localStorage.getItem("token");
   useEffect(() => {
-    const token = localStorage.getItem("token");
     if (token) {
       toast.success("You are already logged in");
       navigate("/explore"); // Redirect to explore if token exists
     }
   }, [navigate]);
+
+    // Prevent rendering if token exists
+    if (token) {
+      return null; // Or return a loading spinner if needed
+    }
+  
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

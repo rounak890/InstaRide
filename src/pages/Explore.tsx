@@ -62,8 +62,11 @@ export default function Explore() {
     setFilteredRides(rides);
   }, [rides]);
 
+  console.log("isAuthenticated:", isAuthenticated);
+  console.log("user:", user);
+
   // Redirect if not authenticated
-  if (!isAuthenticated || !user) {
+  if (!isAuthenticated ) {
     return <Navigate to="/login" replace />;
   }
 
