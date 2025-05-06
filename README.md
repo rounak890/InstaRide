@@ -1,73 +1,55 @@
-# Welcome to your Lovable project
+# 🧭 InstaRide App
 
-## Project info
+**InstaRide App** is a travel-focused web and mobile application designed with a modern **React** frontend and a robust **FastAPI** backend API. Whether you're planning your next trip or managing your itinerary, InstaRide App brings a seamless user experience.
 
-**URL**: https://lovable.dev/projects/84b68301-754c-4f66-9569-97a26f8bddd3
+## 🌐 Live Demo
 
-## How can I edit this code?
+- **Frontend**: [https://ride-with-insta-nav.vercel.app/](https://ride-with-insta-nav.vercel.app/)
 
-There are several ways of editing your application.
+---
 
-**Use Lovable**
+## 🚀 Features
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/84b68301-754c-4f66-9569-97a26f8bddd3) and start prompting.
+- 🗺️ Browse travel destinations
+- 📅 Plan and manage trips
+- 🔐 User authentication (login/signup)
+- 📡 API-driven architecture
 
-Changes made via Lovable will be committed automatically to this repo.
+---
 
-**Use your preferred IDE**
+## 🛠️ Tech Stack
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Frontend – React  
+- React.js (with Hooks)
+- Axios for API calls
+- React Router DOM
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Backend – FastAPI  
+- FastAPI
+- SQLAlchemy for Render's  PostgreSQL
+- FastAPI mail for 
+- JWT for Authentication
 
-Follow these steps:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Hosting  
+- **Frontend**: Vercel  
+- **Backend API**: Render
+- **Mailing** : FastAPI Mail
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+---
 
-# Step 3: Install the necessary dependencies.
-npm i
+## Screenshots
+![WhatsApp Image 2025-04-29 at 09 22 28_4bb55e4b](https://github.com/user-attachments/assets/5d39f852-5d27-488a-b1a3-700197d205ca)
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+![WhatsApp Image 2025-04-29 at 09 22 28_5779d0c5](https://github.com/user-attachments/assets/bb2eaae9-a5db-4f9c-9a96-b84bfff48c43)
 
-**Edit a file directly in GitHub**
+![WhatsApp Image 2025-04-29 at 09 22 28_5f8c7675](https://github.com/user-attachments/assets/3c4f7726-ffd7-4399-bec7-2fd3575e0b36)
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
 
-**Use GitHub Codespaces**
+![WhatsApp Image 2025-04-29 at 09 22 28_ac1e14bb](https://github.com/user-attachments/assets/04b79508-c0b3-4e36-8016-1c28159e64d5)
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
 
-## What technologies are used for this project?
+![WhatsApp Image 2025-04-29 at 09 22 28_b381b96f](https://github.com/user-attachments/assets/b38c9d37-d91c-4428-9209-4f51cb410ed6)
 
-This project is built with:
+![WhatsApp Image 2025-04-29 at 09 22 28_4bb55e4b](https://github.com/user-attachments/assets/e4c72986-9fc5-4c90-b06e-3f6902473f99)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/84b68301-754c-4f66-9569-97a26f8bddd3) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
